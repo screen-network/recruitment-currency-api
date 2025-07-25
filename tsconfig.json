@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "NodeNext",
+    "noImplicitAny": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "nodenext",
+    "sourceMap": true,
+    "target": "es2022",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": false,
+    "lib": ["esnext", "dom"],
+    "declaration": true,
+    "declarationMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "rootDir": "./src",
+    "outDir": "./build"
+  },
+  "include": ["src/**/*"]
+}

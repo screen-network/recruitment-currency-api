@@ -1,0 +1,46 @@
+{
+  "name": "recruitment-currency-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@spinajs/configuration": "^2.0.286",
+    "@spinajs/di": "^2.0.286",
+    "@spinajs/exceptions": "^2.0.286",
+    "@spinajs/http": "^2.0.286",
+    "@spinajs/log": "^2.0.286",
+    "@spinajs/log-common": "^2.0.286",
+    "@spinajs/validation": "^2.0.286",
+    "@spinajs/fs": "^2.0.286"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "npm run clean && npm run compile",
+    "build-workflow": "npm run clean && npm run compile && npm run copy-resources",
+    "watch": "tsc -p tsconfig.json --watch",
+    "compile": "tsc -p tsconfig.json",
+    "dev": "nodemon -L --watch 'src/**/*' -e ts --exec \"npm run build && npm run start\"",
+    "clean": "",
+    "test": "ts-mocha -p tsconfig.json test/**/*.test.ts",
+    "coverage": "nyc npm run test",
+    "build-docs": "rimraf docs && typedoc --options typedoc.json src/",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint -c .eslintrc.js --ext .ts src --fix",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
+    "copy-resources": "cp -R src/data build/data",
+    "docker-clean": "docker rm yourscreen-backend && docker rmi backend-api",
+    "docker-build": "docker . -t screennetwork/yourscreen-backend --no-cache",
+    "docker-run": "docker run --name=screennetwork/yourscreen-backend --cap-add=NET_ADMIN --network=host --device /dev/net/tun -it yourscreen-backend",
+    "docker-compose": "docker-compose --env-file .env up",
+    "docker-terminal": "docker container exec -it yourscreen-backend bash"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.3.0"
+  }
+}
